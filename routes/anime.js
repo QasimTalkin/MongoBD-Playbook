@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const animeController = require("../controllers/animeController");
+const {index, addForm, create, details, remove} = require("../controllers/animeController");
 
-router.get("/", animeController.index);
-router.get("/add", animeController.addForm);
-router.post("/add", animeController.create);
-router.get("/anime/:id", animeController.details);
-router.post("/anime/:id/delete", animeController.remove);
+router.get("/", index);
+router.get("/add", addForm);
+router.post("/add", create);
+router.get("/anime/:id", details);
+router.post("/anime/:id/delete", remove);
 
 module.exports = router;

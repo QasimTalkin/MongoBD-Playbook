@@ -1,1 +1,12 @@
-h1 Welcome Index
+extends layout
+
+block content
+  h2= title
+  if anime.length === 0
+    p.empty No anime yet!
+  else
+    ul.anime-list
+      each item in anime
+        li.anime-card
+          a.anime-title(href=`/anime/${item.id}`)= item.title
+          span.rating ★ #{item.rating}/10
