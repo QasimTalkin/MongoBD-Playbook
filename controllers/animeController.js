@@ -5,9 +5,11 @@ let animeList = JSON.parse(fs.readFileSync(dataPath, "utf8"));
 let nextId = Math.max(0, ...animeList.map(a => a.id)) + 1;
 
 exports.index = (req, res) => {
+    console.log("User in session:", req.session.user);
     res.render("index", {
         title: "My Anime Collection",
-        anime: animeList
+        anime: animeList,
+        user: req.session.user ?? null
     });
 };
 
@@ -16,14 +18,15 @@ exports.details = (req, res) => {
     if (!anime) {
         return res.status(404).render("index", {
             title: "Not found",
-            anime: animeList
+            anime: animeList,
+            user: req.session.user ?? null
         });
     }
-    res.render("details", { title: anime.title, anime });
+    res.render("details", { title: anime.title, anime, user: req.session.user ?? null });
 };
 
 exports.addForm = (req, res) => {
-    res.render("add", { title: "Add anime" });
+    res.render("add", { title: "Add anime", user: req.session.user ?? null });
 };
 
 exports.create = (req, res) => {

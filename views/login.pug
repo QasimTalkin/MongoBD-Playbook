@@ -1,11 +1,11 @@
 extends layout
 
 block content
-  h1 Add a new anime
-  form.form(action="/add" method="POST")
-    label(for="title") Title
-    input(type="text" name="title" required)
-    label(for="rating") Rating (1–10)
-    input(type="number" name="rating" min="1" max="10" required)
-    button.btn(type="submit") Save
+  h1 Login
+  form.form(action="/user/login" method="POST")
+    label(for="username") Username
+    input(type="text" name="username" required)
+    label(for="password") Password
+    input(type="password" name="password" required)
+    button.btn(type="submit") Login
   a.back(href="/") ← Cancel
